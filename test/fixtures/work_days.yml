@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  work_hours: 9.99
+  date: 2013-03-15
+
+two:
+  work_hours: 9.99
+  date: 2013-03-15
