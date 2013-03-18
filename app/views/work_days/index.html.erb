@@ -1,7 +1,7 @@
 <h1>Ore di lavoro <%= Time.now.strftime("%m/%Y")%></h1>
 
-<table>
-  <tr>
+<table class="work-days-table">
+  <tr class="work-days-table-headers-row">
     <th>Data</th>
     <th>Ore di Lavoro</th>
     <th></th>
@@ -9,16 +9,18 @@
   </tr>
 
 <% @work_days.each do |work_day| %>
-  <tr class="work-day-row">
-    <td><%= work_day.date %></td>
+  <tr class="work-day-row <%= cycle("odd", "even") %>">
+    <td><%= work_day.date.strftime("%d/%m") %></td>
     <td><%= work_day.work_hours %></td>
     <td><%= link_to 'Modifica', edit_work_day_path(work_day) %></td>
     <td><%= link_to 'Elimina', work_day, method: :delete, data: { confirm: 'Sicuro?' } %></td>
   </tr>
 <% end %>
-  <tr class="total-row">
+  <tr class="total-hours-count-row">
     <td>Ore totali</td>
     <td><%= @work_days_total_hours %></td>
+    <td></td>
+    <td></td>
   </tr>
 </table>
 
