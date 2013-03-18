@@ -1,25 +1,27 @@
-<h1>Listing work_days</h1>
+<h1>Ore di lavoro <%= Time.now.strftime("%m/%Y")%></h1>
 
 <table>
   <tr>
-    <th>Work hours</th>
-    <th>Date</th>
-    <th></th>
+    <th>Data</th>
+    <th>Ore di Lavoro</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @work_days.each do |work_day| %>
-  <tr>
-    <td><%= work_day.work_hours %></td>
+  <tr class="work-day-row">
     <td><%= work_day.date %></td>
-    <td><%= link_to 'Show', work_day %></td>
-    <td><%= link_to 'Edit', edit_work_day_path(work_day) %></td>
-    <td><%= link_to 'Destroy', work_day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= work_day.work_hours %></td>
+    <td><%= link_to 'Modifica', edit_work_day_path(work_day) %></td>
+    <td><%= link_to 'Elimina', work_day, method: :delete, data: { confirm: 'Sicuro?' } %></td>
   </tr>
 <% end %>
+  <tr class="total-row">
+    <td>Ore totali</td>
+    <td><%= @work_days_total_hours %></td>
+  </tr>
 </table>
 
 <br />
 
-<%= link_to 'New Work day', new_work_day_path %>
+<%= link_to 'Aggiungi giornata di lavoro', new_work_day_path %>

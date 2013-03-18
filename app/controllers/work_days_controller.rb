@@ -2,7 +2,13 @@ class WorkDaysController < ApplicationController
   # GET /work_days
   # GET /work_days.json
   def index
-    @work_days = WorkDay.all
+    # Get all work days in the actual month
+    currentTime = Time.now
+    @work_days = WorkDay.where(date: currentTime.at_beginning_of_month..currentTime.at_end_of_month)
+    
+    # Gets sum of all the work hours
+    zeroWorkDay = WorkDay.new(date: Time.now, work_hours: 0)
+    @work_days_total_hours = @work_days.inject(zeroWorkDay){|sum, item| sum.work_hours+item.work_hours} || 0
 
     respond_to do |format|
       format.html # index.html.erb
