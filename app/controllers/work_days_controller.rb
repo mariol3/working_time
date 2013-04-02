@@ -4,7 +4,7 @@ class WorkDaysController < ApplicationController
   def index
     # Get all work days in the actual month
     currentTime = Time.now
-    @work_days = WorkDay.where(date: currentTime.at_beginning_of_month..currentTime.at_end_of_month)
+    @work_days = WorkDay.order("date").where(date: currentTime.at_beginning_of_month..currentTime.at_end_of_month)
     
     # Gets sum of all the work hours
     @work_days_total_hours = @work_days.inject(0.0){|sum, item| sum+item.work_hours} || 0
@@ -49,7 +49,8 @@ class WorkDaysController < ApplicationController
 
     respond_to do |format|
       if @work_day.save
-        format.html { redirect_to action: 'index', notice: 'Work day was successfully created.' }
+        flash[:notice] = 'Giornata di lavoro salvata con successo.'
+        format.html { redirect_to action: 'index' }
         format.json { render json: @work_day, status: :created, location: @work_day }
       else
         format.html { render action: "new" }
@@ -65,7 +66,8 @@ class WorkDaysController < ApplicationController
 
     respond_to do |format|
       if @work_day.update_attributes(params[:work_day])
-        format.html { redirect_to @work_day, notice: 'Work day was successfully updated.' }
+        flash[:notice] = 'Giornata di lavoro salvata con successo.'
+        format.html { redirect_to action: 'index' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -81,6 +83,7 @@ class WorkDaysController < ApplicationController
     @work_day.destroy
 
     respond_to do |format|
+      flash[:notice] = 'Giornata di lavoro rimossa con successo.'
       format.html { redirect_to work_days_url }
       format.json { head :no_content }
     end
