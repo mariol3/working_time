@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
 <h1>Ore di lavoro <%= Time.now.strftime("%m/%Y")%></h1>
 
 <table class="work-days-table">

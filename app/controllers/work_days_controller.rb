@@ -32,7 +32,7 @@ class WorkDaysController < ApplicationController
     @work_day = WorkDay.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @work_day }
     end
   end
@@ -49,7 +49,7 @@ class WorkDaysController < ApplicationController
 
     respond_to do |format|
       if @work_day.save
-        format.html { redirect_to @work_day, notice: 'Work day was successfully created.' }
+        format.html { redirect_to action: 'index', notice: 'Work day was successfully created.' }
         format.json { render json: @work_day, status: :created, location: @work_day }
       else
         format.html { render action: "new" }
