@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130315165756) do
+ActiveRecord::Schema.define(:version => 20130405203021) do
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "password"
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.decimal  "daily_hours"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "work_days", :force => true do |t|
     t.decimal  "work_hours"
