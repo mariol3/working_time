@@ -7,10 +7,12 @@ class WorkDaysController < ApplicationController
     # Get all work days in the actual month
     currentTime = Time.now
     @work_days = WorkDay.order("date").where(date: currentTime.at_beginning_of_month..currentTime.at_end_of_month)
+    @user = User.find_by_id(session[:user_id])
     
     # Gets sum of all the work hours
     @work_days_total_hours = @work_days.inject(0.0){|sum, item| sum+item.work_hours} || 0
-    @user = User.find_by_id(session[:user_id])
+    @work_days_extra_hours = @work_days_total_hours - (@work_days.count * @user.daily_hours)
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @work_days }

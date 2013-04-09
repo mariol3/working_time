@@ -4,6 +4,8 @@
 
 <h1>Ore di lavoro <%= Time.now.strftime("%m/%Y")%> per <%= @user.username %></h1>
 
+<h3>Ore giornaliere: <%= @user.daily_hours %></h3>
+
 <table class="work-days-table">
   <tr class="work-days-table-headers-row">
     <th>Data</th>
@@ -23,6 +25,12 @@
   <tr class="total-hours-count-row">
     <td>Ore totali</td>
     <td><%= @work_days_total_hours %></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr class="total-hours-count-row">
+    <td>Ore extra</td>
+    <td><%= @work_days_extra_hours %></td>
     <td></td>
     <td></td>
   </tr>
