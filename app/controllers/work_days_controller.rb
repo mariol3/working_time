@@ -1,4 +1,6 @@
 class WorkDaysController < ApplicationController
+  skip_before_filter :admin_section
+  
   # GET /work_days
   # GET /work_days.json
   def index
@@ -8,7 +10,7 @@ class WorkDaysController < ApplicationController
     
     # Gets sum of all the work hours
     @work_days_total_hours = @work_days.inject(0.0){|sum, item| sum+item.work_hours} || 0
-
+    @user = User.find_by_id(session[:user_id])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @work_days }

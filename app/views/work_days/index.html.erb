@@ -2,7 +2,7 @@
   <p class="notice"><%= flash[:notice] %></p>
 <% end %>
 
-<h1>Ore di lavoro <%= Time.now.strftime("%m/%Y")%></h1>
+<h1>Ore di lavoro <%= Time.now.strftime("%m/%Y")%> per <%= @user.username %></h1>
 
 <table class="work-days-table">
   <tr class="work-days-table-headers-row">
@@ -31,3 +31,4 @@
 <br />
 
 <%= link_to 'Aggiungi giornata di lavoro', new_work_day_path %>
+<%= link_to 'Logout', logout_path, method: :delete %>
