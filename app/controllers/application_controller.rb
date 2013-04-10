@@ -11,8 +11,10 @@ class ApplicationController < ActionController::Base
     end
     
     def admin_section
-      unless session[:user_id] == 1
-        redirect_to work_days_url, notice: "Non hai i diritti per accedere alla risorsa indicata"
+      if session[:user_id]
+        unless session[:user_id] == 1
+          redirect_to work_days_url, notice: "Non hai i diritti per accedere alla risorsa indicata"
+        end
       end
     end
 end
