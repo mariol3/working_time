@@ -6,8 +6,8 @@ class WorkDaysController < ApplicationController
   def index
     # Get all work days in the actual month
     currentTime = Time.now
-    @work_days = WorkDay.order("date").where(date: currentTime.at_beginning_of_month..currentTime.at_end_of_month)
-    @user = User.find_by_id(session[:user_id])
+    @user = current_user
+    @work_days = @user.work_days.order("date").where(date: currentTime.at_beginning_of_month..currentTime.at_end_of_month)
     
     # Gets sum of all the work hours
     @work_days_total_hours = @work_days.inject(0.0){|sum, item| sum+item.work_hours} || 0
@@ -49,7 +49,8 @@ class WorkDaysController < ApplicationController
   # POST /work_days
   # POST /work_days.json
   def create
-    @work_day = WorkDay.new(params[:work_day])
+    user = User.find_by_id(session[:user_id])
+    @work_day = user.work_days.create(params[:work_day]) 
 
     respond_to do |format|
       if @work_day.save

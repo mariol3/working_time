@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
                   :password,
                   :password_confirmation,
                   :username
+          
+  has_many :work_days, dependent: :destroy
   
   validates :username,  presence: true, 
                         uniqueness: true, 

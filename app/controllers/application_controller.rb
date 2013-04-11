@@ -17,4 +17,11 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+    
+    def current_user
+      User.find(session[:user_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to login_url, notice: "No user founded"
+    end
+
 end
