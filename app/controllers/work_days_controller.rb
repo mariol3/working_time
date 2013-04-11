@@ -49,7 +49,7 @@ class WorkDaysController < ApplicationController
   # POST /work_days
   # POST /work_days.json
   def create
-    user = User.find_by_id(session[:user_id])
+    user = current_user
     @work_day = user.work_days.create(params[:work_day]) 
 
     respond_to do |format|
