@@ -10,6 +10,7 @@
   <tr class="work-days-table-headers-row">
     <th>Data</th>
     <th>Ore di Lavoro</th>
+    <th>Dettagli</th>
     <th></th>
     <th></th>
   </tr>
@@ -18,6 +19,7 @@
   <tr class="work-day-row <%= cycle("odd", "even") %>">
     <td><%= work_day.date.strftime("%d/%m") %></td>
     <td><%= work_day.work_hours %></td>
+    <td><%= work_day.details %></td>
     <td><%= link_to 'Modifica', edit_work_day_path(work_day) %></td>
     <td><%= link_to 'Elimina', work_day, method: :delete, data: { confirm: 'Sicuro?' } %></td>
   </tr>
@@ -27,10 +29,12 @@
     <td><%= @work_days_total_hours %></td>
     <td></td>
     <td></td>
+    <td></td>
   </tr>
   <tr class="total-hours-count-row">
     <td>Ore extra</td>
     <td><%= @work_days_extra_hours %></td>
+    <td></td>
     <td></td>
     <td></td>
   </tr>

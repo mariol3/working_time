@@ -1,5 +1,5 @@
 class WorkDay < ActiveRecord::Base
-  attr_accessible :date, :work_hours
+  attr_accessible :date, :work_hours, :details
   belongs_to :user
   
   validates :work_hours,  presence: true,
