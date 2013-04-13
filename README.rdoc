@@ -8,5 +8,4 @@ on this while I'm learning Rails so there will probably be lots of unbest pratic
 
 - Stop store plain password in db and use a digest
 - Add email verification
-- Add details field do WorkDay model
 - Add "Export PDF" in WorkDay page

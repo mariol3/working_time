@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
                         length: { in: 4..12 }
   validates :email, presence: true, 
                     uniqueness: true,
-                    confirmation: true
+                    confirmation: true,
+                    email: true
   validates :email_confirmation, presence: true
   validates :password, presence: true,
                        length: { in: 4..12 },

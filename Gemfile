@@ -43,3 +43,4 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'prawn'
+gem 'mail'
